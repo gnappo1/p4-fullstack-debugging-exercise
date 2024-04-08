@@ -1,30 +1,27 @@
-# REST APIs with Flask (Part 1)
+# Debugging Flask-React Fullstack Applications
 
-## Learning Goals
+## Instructions
+- Start the backend server:
+    ```bash
+        pipenv install && pipenv shell
+        cd server
+        python3 app.py
+    ```
+- Start the frontend server
+    ```bash
+        cd client
+        npm i && npm start
+    ```
+- Get the website functionality back to functioning for the routes below
+    - make sure to use `debugger` in the frontend
+    - make sure to use the devtools inside the browser
+    - make sure to use `ipdb` in the backend
 
-- Review API Fundamentals
-- Discuss MVC Architecture and Reinforce Patterns / Best Practices
-- Introduce RESTful Routing
-- Build and Execute GET / POST Requests
-- Introduce and Use Postman to Interact with APIs
-- Discuss the Importance of Serializers
-- Demonstrate How to Properly Set Up Serializers
-- Demonstrate How to Use Serializers to Render Structured Data in API - 
-
-## Responses
-
-- Lecture Topics
-- Introduction to APIs
-- Command Line Flask
-- MVC Architecture
-- RESTful Routing Conventions
-- Testing APIs with Postman
-- GET/POST
-- SQLAlchemy-Serializer
-- Serializing Relationships
-- Serializing Associations
-
-## BONUS
-
-- Using app-level validations in Views with reqparse
-- Standardizing Api-level Errors with @app.errorhandler 
+### POST Request - Create a New Production
+- You will have to spot 4 bugs located both in the Flask backend and the React frontend
+### GET Request - Get One Production
+- You will have to spot 3 bugs located both in the Flask backend and the React frontend
+### DELETE Request - Delete One Production
+- You will have to spot 3 bugs located both in the Flask backend and the React frontend
+### GET Request - Get All Productions
+- You will have to spot 3 bugs located both in the Flask backend and the React frontend
