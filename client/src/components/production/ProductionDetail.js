@@ -9,13 +9,13 @@ function ProductionDetail() {
   const { handleEdit, deleteProduction } = useOutletContext()
 
   //Student Challenge: GET One 
-  const {id} = useParams()
+  const {productionId} = useParams()
   const navigate = useNavigate()
 
   useEffect(()=>{
-    fetch(`/production/${id}`)
+    fetch(`/productions/${productionId}`)
     .then(resp => {
-      if (resp.status === 200) {
+      if (resp.ok) {
         return resp.json().then(setProduction)
       }
       return resp.json().then(errorObj => setError(errorObj.message))

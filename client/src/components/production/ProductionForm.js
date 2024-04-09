@@ -27,7 +27,8 @@ let productionSchema = object({
     .min(2, "Directors must be at least 2 chars")
     .required("Director is required"),
   description: string()
-    .min(10, "Description must be at least 10 chars")
+    .min(30, "Description must be at least 10 chars")
+    .max(500, "Description must be max 500 chars")
     .required("Description is required"),
   ongoing: bool()
     .required("Ongoing is required")
@@ -110,6 +111,14 @@ function ProductionForm() {
               <label>Description</label>
               <textarea type='text' rows='4' cols='50' name='description' onChange={handleChange} onBlur={handleBlur} value={values.description}/>
               {errors.description && touched.description && <div className='error-message show'>{errors.description}</div>}
+              
+              <label>Ongoing</label>
+              <input type='radio' rows='4' cols='50' name='ongoing' onChange={handleChange} onBlur={handleBlur} value={false} checked={values.ongoing === "false"}/>
+              <label htmlFor="ongoing">False</label>
+
+              <input type='radio' rows='4' cols='50' name='ongoing' onChange={handleChange} onBlur={handleBlur} value={true} checked={values.ongoing === "true"}/>
+              <label htmlFor="ongoing">True</label>
+              {errors.ongoing && touched.ongoing && <div className='error-message show'>{errors.ongoing}</div>}
 
               <input type='submit' disabled={isSubmitting} />
             </Form>

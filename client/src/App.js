@@ -16,10 +16,10 @@ function App() {
   useEffect(() => {
     fetch('/productions')
     .then(resp => {
-      if (resp.status === 201) {
+      if (resp.ok) {
         return resp.json().then(setProductions)
       }
-      return resp.json().then(error => toast.error(error))
+      return resp.json().then(error => toast.error(error.message))
     })
     .catch(err => console.log(err))
   }, []);
@@ -29,12 +29,12 @@ function App() {
   const addProduction = (production) => setProductions(production)
   const updateProduction = (updated_production) => setProductions(productions => productions.map(production =>{
     if(production.id === updated_production.id){
-      return updated_production
+      return {updated_production}
     } else {
       return production
     }
   } ))
-  const deleteProduction = (deleted_production) => setProductions(productions => productions.filter((production) => production.id === deleted_production.id) )
+  const deleteProduction = (deleted_production) => setProductions(productions => productions.filter((production) => production.id !== deleted_production.id) )
 
   const handleEdit = (production) => {
     setProductionEdit(production)

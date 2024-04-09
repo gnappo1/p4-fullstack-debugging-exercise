@@ -75,7 +75,7 @@ class Productions(Resource):
     def get(self):
         try:
             #! Marshmallow code
-            serialized_prods = productions_schema.dump(Production.querry)
+            serialized_prods = productions_schema.dump(Production.query)
             return serialized_prods
         except Exception as e:
             return {"message": str(e)}, 400
@@ -91,7 +91,7 @@ class Productions(Resource):
             )  #! marshmallow: marshmallow first and then model validations will kick in here
             db.session.add(prod)
             db.session.commit()  #! db constraints will kick in here
-            return production_schema.dump(prod)
+            return production_schema.dump(prod), 201
         except Exception as e:
             db.session.rollback()
             return {"message": str(e)}, 422
@@ -138,7 +138,8 @@ class ProductionById(Resource):
         #! NOT TOUCHED DURING THE MARSHMALLOW REFACTOR
         if g.prod:
             db.session.delete(g.prod)
-            return ""
+            db.session.commit()
+            return "", 204
         return {"message": f"Could not find Production with id #{id}"}, 404
 
 
